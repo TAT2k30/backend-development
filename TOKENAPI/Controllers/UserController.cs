@@ -30,9 +30,12 @@ namespace TOKENAPI.Controllers
 
         private readonly DatabaseContext _dbContext;
 
-        public UserController(DatabaseContext dbContext)
+        private readonly ILogger<WeatherForecastController> _logger;
+        public UserController(DatabaseContext dbContext, ILogger<WeatherForecastController> logger)
         {
             _dbContext = dbContext;
+
+            _logger = logger;
         }
 
         [HttpGet]
@@ -64,26 +67,29 @@ namespace TOKENAPI.Controllers
                 var userBirthDay = DateTime.Parse(user.DateOfBirth.ToString());
                 var currentDay = DateTime.Now;
                 var age = currentDay.Year - userBirthDay.Year;
-
+                _logger.LogInformation($"{age}");
                 var genderFolder = user.Gender ? "Male" : "Female";
                 var baseFolder = $"Uploads/DefaultImage/{genderFolder}";
 
-                switch (age)
+                if (image == null)
                 {
-                    case var a when a > 5 && a < 10:
-                        user.AvatarUrl = $"{rootUrl}{baseFolder}/Kid(5-10).jpg";
-                        break;
-                    case var a when a > 10 && a < 20:
-                        user.AvatarUrl = $"{rootUrl}{baseFolder}/Teenager(10-20).jpg";
-                        break;
-                    case var a when a > 20 && a < 50:
-                        user.AvatarUrl = $"{rootUrl}{baseFolder}/Adult(20-50).jpg";
-                        break;
-                    case var a when a > 50:
-                        user.AvatarUrl = $"{rootUrl}{baseFolder}/Senior.jpg";
-                        break;
-                    default:
-                        return BadRequest(new ResponseiveAPI<User>(user, "Invalid age", 400));
+                    switch (age)
+                    {
+                        case var a when a > 5 && a < 10:
+                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Kid(5-10).jpg";
+                            break;
+                        case var a when a > 10 && a < 20:
+                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Teenager(10-20).jpg";
+                            break;
+                        case var a when a > 20 && a < 50:
+                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Adult(20-50).jpg";
+                            break;
+                        case var a when a > 50:
+                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Senior.jpg";
+                            break;
+                        default:
+                            return BadRequest(new ResponseiveAPI<User>(user, "Invalid age", 400));
+                    }
                 }
 
                 user.LastLoginTime = currentDay;

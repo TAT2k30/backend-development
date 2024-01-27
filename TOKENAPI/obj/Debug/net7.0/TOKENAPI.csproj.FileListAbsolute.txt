@@ -1,0 +1,154 @@
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\appsettings.Development.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\appsettings.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\TOKENAPI.exe
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\TOKENAPI.deps.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\TOKENAPI.runtimeconfig.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\TOKENAPI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\TOKENAPI.pdb
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Azure.Core.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Azure.Identity.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Humanizer.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.CodeDom.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Drawing.Common.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Memory.Data.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Runtime.Caching.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Security.Permissions.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\System.Windows.Extensions.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.csproj.AssemblyReference.cache
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.AssemblyInfoInputs.cache
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.AssemblyInfo.cs
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.csproj.CoreCompileInputs.cache
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.TOKENAPI.Microsoft.AspNetCore.StaticWebAssets.props
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.build.TOKENAPI.props
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.TOKENAPI.props
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.TOKENAPI.props
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets.pack.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets.build.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\staticwebassets.development.json
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\scopedcss\bundle\TOKENAPI.styles.css
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.csproj.CopyComplete
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\refint\TOKENAPI.dll
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.pdb
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\TOKENAPI.genruntimeconfig.cache
+D:\APTECH\HK3\CLASS\T1.2210.E1\DMAWS\TOKENAPI\TOKENAPI\obj\Debug\net7.0\ref\TOKENAPI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\appsettings.Development.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\appsettings.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\TOKENAPI.exe
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\TOKENAPI.deps.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\TOKENAPI.runtimeconfig.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\TOKENAPI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\TOKENAPI.pdb
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Azure.Core.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Azure.Identity.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Humanizer.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.Identity.Client.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.OpenApi.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.SqlServer.Server.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.CodeDom.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Drawing.Common.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Memory.Data.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Runtime.Caching.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Security.Permissions.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\System.Windows.Extensions.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.csproj.AssemblyReference.cache
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.AssemblyInfoInputs.cache
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.AssemblyInfo.cs
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.csproj.CoreCompileInputs.cache
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.MvcApplicationPartsAssemblyInfo.cs
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.MvcApplicationPartsAssemblyInfo.cache
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.TOKENAPI.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.build.TOKENAPI.props
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.TOKENAPI.props
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.TOKENAPI.props
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets.pack.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets.build.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\staticwebassets.development.json
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\scopedcss\bundle\TOKENAPI.styles.css
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.csproj.CopyComplete
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\refint\TOKENAPI.dll
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.pdb
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\TOKENAPI.genruntimeconfig.cache
+D:\Aptech\Sem_3\.NET CORE WEB API\TOKENAPI (1)\TOKENAPI\obj\Debug\net7.0\ref\TOKENAPI.dll

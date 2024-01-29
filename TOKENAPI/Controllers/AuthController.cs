@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using BackEndDevelopment.Models.DTOS;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TOKENAPI.Migrations;
 using TOKENAPI.Models;
 using TOKENAPI.Services;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TOKENAPI.Controllers
 {
@@ -12,16 +14,17 @@ namespace TOKENAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ILogger<WeatherForecastController> _logger;
-
+        private readonly UserController _userController;
         private readonly IConfiguration _configuration;
         private readonly DatabaseContext _dbContext;
-        public AuthController(IConfiguration configuration, DatabaseContext dbContext, ILogger<WeatherForecastController> logger)
+        public AuthController(IConfiguration configuration, DatabaseContext dbContext, ILogger<WeatherForecastController> logger, UserController userController)
         {
             _configuration = configuration;
             _dbContext = dbContext;
             _logger = logger;
+            _userController = userController;
         }
-        [HttpPost]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserCredentials credentials) {
             var user = await Authenticate(credentials);
             if (user != null) {
@@ -37,6 +40,53 @@ namespace TOKENAPI.Controllers
                 return NotFound(new ResponseiveAPI<User>(null, "No account match your credential", 404));
             }
         }
+        [HttpPost("register")]
+        public async Task<ActionResult> Register([FromForm] RegisterForm registerForm)
+        {
+            try
+            {
+                var checkEmail = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == registerForm.Email);
+                if (checkEmail != null)
+                {
+                    return Conflict(new ResponseiveAPI<object>(null, "Email already taken", 409));
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(new ResponseiveAPI<object>(null, "Invalid input data", 400));
+                }
+
+                var submitUser = new User
+                {
+                
+                    UserName = registerForm.UserName,
+                    Email = registerForm.Email,
+                    Password = registerForm.Password,
+                    DateOfBirth = registerForm.DateOfBirth,
+                    Gender = registerForm.Gender,
+                    Role = "User",
+                    Status = registerForm.Status.HasValue ? registerForm.Status.Value : false,
+                    LastLoginTime = null,
+                    AvatarUrl = null,
+                };
+
+
+                var response = await _userController.CreateUserAccount(submitUser, null);
+
+                if (response is OkObjectResult)
+                {
+                    return Ok(new ResponseiveAPI<object>(null, "User registered successfully", 200));
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<object>(null, "User registration failed", 500));
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<object>(null, "Database error during user registration", 500));
+            }
+        }
+
         [HttpPost("logout")]
         public async Task<IActionResult> Logout([FromBody] string email)
         {

@@ -54,7 +54,7 @@ namespace TOKENAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateUserAccount([FromForm] User user, IFormFile? image)
+        public async Task<ActionResult> CreateUserAccount(User user, IFormFile? image)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace TOKENAPI.Controllers
 
                 var currentDay = DateTime.Now;
                 var age = currentDay.Year - user.DateOfBirth.Year;
-
+               
                 var rootUrl = "http://localhost:5085/";
                 var genderFolder = user.Gender ? "Male" : "Female";
                 var baseFolder = $"Uploads/DefaultImage/{genderFolder}";

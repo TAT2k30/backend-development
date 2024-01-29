@@ -63,33 +63,16 @@ namespace TOKENAPI.Controllers
                     return BadRequest(ResponseiveAPI<User>.BadRequest(ModelState));
                 }
 
-                var rootUrl = "http://localhost:5085/";
-                var userBirthDay = DateTime.Parse(user.DateOfBirth.ToString());
                 var currentDay = DateTime.Now;
-                var age = currentDay.Year - userBirthDay.Year;
-                _logger.LogInformation($"{age}");
+                var age = currentDay.Year - user.DateOfBirth.Year;
+
+                var rootUrl = "http://localhost:5085/";
                 var genderFolder = user.Gender ? "Male" : "Female";
                 var baseFolder = $"Uploads/DefaultImage/{genderFolder}";
 
                 if (image == null)
                 {
-                    switch (age)
-                    {
-                        case var a when a > 5 && a < 10:
-                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Kid(5-10).jpg";
-                            break;
-                        case var a when a > 10 && a < 20:
-                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Teenager(10-20).jpg";
-                            break;
-                        case var a when a > 20 && a < 50:
-                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Adult(20-50).jpg";
-                            break;
-                        case var a when a > 50:
-                            user.AvatarUrl = $"{rootUrl}{baseFolder}/Senior.jpg";
-                            break;
-                        default:
-                            return BadRequest(new ResponseiveAPI<User>(user, "Invalid age", 400));
-                    }
+                    user.AvatarUrl = DetermineDefaultAvatarUrl(age, rootUrl, baseFolder);
                 }
 
                 user.LastLoginTime = currentDay;
@@ -108,8 +91,32 @@ namespace TOKENAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<object>.Exception(ex));
             }
-
         }
+
+        private string DetermineDefaultAvatarUrl(int age, string rootUrl, string baseFolder)
+        {
+            if (age > 5 && age < 10)
+            {
+                return $"{rootUrl}{baseFolder}/Kid(5-10).jpg";
+            }
+            else if (age > 10 && age < 20)
+            {
+                return $"{rootUrl}{baseFolder}/Teenager(10-20).jpg";
+            }
+            else if (age > 20 && age < 50)
+            {
+                return $"{rootUrl}{baseFolder}/Adult(20-50).jpg";
+            }
+            else if (age > 50)
+            {
+                return $"{rootUrl}{baseFolder}/Senior.jpg";
+            }
+            else
+            {
+                return null; 
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {

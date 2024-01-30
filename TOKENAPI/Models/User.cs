@@ -23,5 +23,7 @@ namespace TOKENAPI.Models
         public bool Status { get; set; } = false;
         public DateTime? LastLoginTime { get; set; }
         public string? AvatarUrl { get; set; }  
+        public DateTime? CreatedDate { get; set; }
+
     }
 }

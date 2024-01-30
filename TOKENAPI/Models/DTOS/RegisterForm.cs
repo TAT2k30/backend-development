@@ -9,7 +9,6 @@ namespace BackEndDevelopment.Models.DTOS
         public string Email { get; set; }
         [Required]
         public bool Gender { get; set; }
-        [DataType(DataType.Date)]
         [Required]
         public DateTime DateOfBirth { get; set; }
         [Required]
@@ -20,6 +19,6 @@ namespace BackEndDevelopment.Models.DTOS
         public bool? Status { get; set; } = false;
         public DateTime? LastLoginTime { get; set; }
         public string? AvatarUrl { get; set; }
-
+        public DateTime? CreatedDate { get; set; }
     }
 }

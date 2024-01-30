@@ -67,6 +67,7 @@ namespace TOKENAPI.Controllers
                     Status = registerForm.Status.HasValue ? registerForm.Status.Value : false,
                     LastLoginTime = null,
                     AvatarUrl = null,
+                    CreatedDate = null,
                 };
 
 

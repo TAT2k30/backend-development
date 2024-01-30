@@ -65,13 +65,14 @@ namespace TOKENAPI.Controllers
 
                 var currentDay = DateTime.Now;
                 var age = currentDay.Year - user.DateOfBirth.Year;
-               
+                _logger.LogInformation("Age :", user.DateOfBirth);
                 var rootUrl = "http://localhost:5085/";
                 var genderFolder = user.Gender ? "Male" : "Female";
                 var baseFolder = $"Uploads/DefaultImage/{genderFolder}";
 
                 if (image == null)
                 {
+                    _logger.LogInformation("Age setting if image null :");
                     user.AvatarUrl = DetermineDefaultAvatarUrl(age, rootUrl, baseFolder);
                 }
 
@@ -81,7 +82,7 @@ namespace TOKENAPI.Controllers
                 {
                     user.AvatarUrl = FileHandler.SaveImage("UserAvatar", image);
                 }
-
+                user.CreatedDate = currentDay;
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
 
@@ -95,6 +96,7 @@ namespace TOKENAPI.Controllers
 
         private string DetermineDefaultAvatarUrl(int age, string rootUrl, string baseFolder)
         {
+
             if (age > 5 && age < 10)
             {
                 return $"{rootUrl}{baseFolder}/Kid(5-10).jpg";

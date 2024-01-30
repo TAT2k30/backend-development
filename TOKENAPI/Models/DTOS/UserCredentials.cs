@@ -1,4 +1,4 @@
-﻿namespace TOKENAPI.Models
+﻿namespace BackEndDevelopment.Models.DTOS
 {
     public class UserCredentials
     {

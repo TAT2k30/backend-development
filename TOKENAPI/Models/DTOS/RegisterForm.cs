@@ -1,14 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TOKENAPI.Models
+namespace BackEndDevelopment.Models.DTOS
 {
-    public class User
+    public class RegisterForm
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
         [Required]
         public bool Gender { get; set; }
@@ -18,12 +15,10 @@ namespace TOKENAPI.Models
         public string UserName { get; set; }
         [Required]
         public string Password { get; set; }
-        [Required]
-        public string Role { get; set; }
-        public bool Status { get; set; } = false;
+        public string? Role { get; set; } = "User";
+        public bool? Status { get; set; } = false;
         public DateTime? LastLoginTime { get; set; }
-        public string? AvatarUrl { get; set; }  
+        public string? AvatarUrl { get; set; }
         public DateTime? CreatedDate { get; set; }
-
     }
 }

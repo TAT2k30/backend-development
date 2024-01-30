@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TOKENAPI.Controllers;
 using TOKENAPI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,6 +40,9 @@ builder.Services.AddCors(options =>
         policy.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
     });
 });
+
+builder.Services.AddScoped<UserController>();
+builder.Services.AddScoped<AuthController>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

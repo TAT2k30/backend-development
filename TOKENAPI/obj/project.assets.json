@@ -3951,11 +3951,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\TOKENAPI\\BackEndDevelopment.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj",
       "projectName": "BackEndDevelopment",
-      "projectPath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\TOKENAPI\\BackEndDevelopment.csproj",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\TOKENAPI\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

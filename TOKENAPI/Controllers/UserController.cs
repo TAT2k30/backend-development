@@ -82,7 +82,7 @@ namespace TOKENAPI.Controllers
                 {
                     user.AvatarUrl = FileHandler.SaveImage("UserAvatar", image);
                 }
-                user.CreatedDate = currentDay;
+               
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
 

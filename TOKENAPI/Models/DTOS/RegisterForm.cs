@@ -19,6 +19,6 @@ namespace BackEndDevelopment.Models.DTOS
         public bool? Status { get; set; } = false;
         public DateTime? LastLoginTime { get; set; }
         public string? AvatarUrl { get; set; }
-        public DateTime? CreatedDate { get; set; }
+    
     }
 }

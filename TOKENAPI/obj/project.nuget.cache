@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8rfaHuZxVN3M1Rg/aP5ZF+r6dIAqcC6Md0Sb8i+ifC2uFQ68AJ/VuwU5Oy/3RzyZKW2f7YdmSkB1/zYpo0Rbyw==",
+  "dgSpecHash": "RHBMD5X2SP9ex9oeYY6GGJLp+T9hjUFFrGh98WaGJfC5oEm/SdJn0ngrnkjOD+LkA361i2/Nn2TiTtBvi1ymRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\TOKENAPI\\BackEndDevelopment.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

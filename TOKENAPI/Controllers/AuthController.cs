@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TOKENAPI.Migrations;
+
 using TOKENAPI.Models;
 using TOKENAPI.Services;
 using static System.Net.Mime.MediaTypeNames;

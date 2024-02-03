@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj": {}
+    "D:\\DEV\\DEV\\ZZZ\\project 3\\demo2\\TOKENAPI\\BackEndDevelopment.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj": {
+    "D:\\DEV\\DEV\\ZZZ\\project 3\\demo2\\TOKENAPI\\BackEndDevelopment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj",
+        "projectUniqueName": "D:\\DEV\\DEV\\ZZZ\\project 3\\demo2\\TOKENAPI\\BackEndDevelopment.csproj",
         "projectName": "BackEndDevelopment",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\BackEndDevelopment.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Eproject-sem4\\BackEnd\\backend-development\\TOKENAPI\\obj\\",
+        "projectPath": "D:\\DEV\\DEV\\ZZZ\\project 3\\demo2\\TOKENAPI\\BackEndDevelopment.csproj",
+        "packagesPath": "C:\\Users\\nanht\\.nuget\\packages\\",
+        "outputPath": "D:\\DEV\\DEV\\ZZZ\\project 3\\demo2\\TOKENAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nanht\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

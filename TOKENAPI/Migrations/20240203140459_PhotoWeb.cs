@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackEndDevelopment.Migrations
 {
     /// <inheritdoc />
-    public partial class PhotoWebTb : Migration
+    public partial class PhotoWeb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -182,7 +182,8 @@ namespace BackEndDevelopment.Migrations
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     TechnicalSizeId = table.Column<int>(type: "int", nullable: true),
                     TechnicalTypeId = table.Column<int>(type: "int", nullable: true),
-                    TechnicalFrameId = table.Column<int>(type: "int", nullable: true)
+                    TechnicalFrameId = table.Column<int>(type: "int", nullable: true),
+                    ProductId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -212,6 +213,11 @@ namespace BackEndDevelopment.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId1",
+                        column: x => x.ProductId1,
+                        principalTable: "Products",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -233,6 +239,11 @@ namespace BackEndDevelopment.Migrations
                 name: "IX_OrderItems_ProductId",
                 table: "OrderItems",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId1",
+                table: "OrderItems",
+                column: "ProductId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_TechnicalFrameId",

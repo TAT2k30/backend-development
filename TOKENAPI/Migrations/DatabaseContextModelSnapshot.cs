@@ -105,6 +105,9 @@ namespace BackEndDevelopment.Migrations
                     b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductId1")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TechnicalFrameId")
                         .HasColumnType("int");
 
@@ -122,6 +125,8 @@ namespace BackEndDevelopment.Migrations
                     b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("ProductId1");
 
                     b.HasIndex("TechnicalFrameId");
 
@@ -353,8 +358,12 @@ namespace BackEndDevelopment.Migrations
                         .HasForeignKey("OrderId");
 
                     b.HasOne("BackEndDevelopment.Models.ProductProps.Product", "Product")
-                        .WithMany("OrderItems")
+                        .WithMany()
                         .HasForeignKey("ProductId");
+
+                    b.HasOne("BackEndDevelopment.Models.ProductProps.Product", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductId1");
 
                     b.HasOne("BackEndDevelopment.Models.PaperProperties.PaperFrame", "TechnicalFrame")
                         .WithMany("OrderItems")

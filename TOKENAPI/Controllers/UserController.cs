@@ -54,7 +54,7 @@ namespace TOKENAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateUserAccount(User user, IFormFile? image)
+        public async Task<ActionResult> CreateUserAccount([FromForm] User user, IFormFile? image)
         {
             try
             {

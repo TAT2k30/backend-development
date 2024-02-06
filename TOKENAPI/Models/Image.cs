@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BackEndDevelopment.Models.DTOS_FOR_RELATIONSHIPS;
 using BackEndDevelopment.Models.OrderProps;
 using BackEndDevelopment.Models.ProductProps;
+using TOKENAPI.Models;
 
 namespace BackEndDevelopment.Models
 {
@@ -10,15 +12,14 @@ namespace BackEndDevelopment.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int? OrderId { get; set; }
-        public int? ProductId { get; set; }
-        public string? ImageUrl { get; set; }
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; }   
+        public int? ProductCategoryId { get; set; }
+        public string? ImageUrl { get; set; }
         public string? Description { get; set; }
-
+        public int? UserId { get; set; }
         // Navigation Properties
-        public Order? Order { get; set; }
-        public Product? Product { get; set; }
+        public User? User { get; set; }
+        public List<ProductCategoryImage>? ProductCategoryImages { get; set; }
     }
 }

@@ -11,17 +11,19 @@ namespace BackEndDevelopment.Models.OrderProps
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int? UserId { get; set; }
-        public DateTime? OrderDate { get; set; }
+        [Required]  
+        public DateTime OrderDate { get; set; }
         public string? Status { get; set; }
-        public decimal? TotalAmount { get; set; }
-        public string? ShippingAddress { get; set; }
+        [Required]
+        public decimal TotalAmount { get; set; }
+        [Required]
+        public string ShippingAddress { get; set; }
         public DateTime? CreatedAt { get; set; }
-
-        public string? ImageUrl { get; set; }
-        //Cấu hình quan hệ nhiều nhiều với các bản
+        //Navigation props
+        public int? UserId { get; set; }
         public User? User { get; set; }
-        public ICollection<OrderItem>? OrderItems { get; set; }
+        public int? OrderItemId { get; set; }
+        public OrderItem? OrderItem { get; set; }
 
     }
 }

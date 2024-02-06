@@ -12,10 +12,8 @@ namespace BackEndDevelopment.Models.PaperProperties
         [Required]
         public string Name { get; set; }
         [Required]
-        public decimal Price { get; set; }
-        public bool? Status { get; set; }
-        [Required]
         public string Description { get; set; }
+        public bool? Status { get; set; }
         public DateTime? CreatedAt { get; set; }
 
         // Navigation Property

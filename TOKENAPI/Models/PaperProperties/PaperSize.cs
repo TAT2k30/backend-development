@@ -14,7 +14,7 @@ namespace BackEndDevelopment.Models.PaperProperties
         [Required]
         public string Dimensions { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public string Description { get; set; }
         public bool? Status { get; set; }
         public DateTime? CreatedAt { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BackEndDevelopment.Models;
 using BackEndDevelopment.Models.OrderProps;
 
 namespace TOKENAPI.Models
@@ -25,7 +26,8 @@ namespace TOKENAPI.Models
         public DateTime? LastLoginTime { get; set; }
         public string? AvatarUrl { get; set; }
 
-        //Quan hệ nhiều nhiều với bản Order
+        //Navigation props
+        public ICollection<Image>? Image { get; set; }
         public ICollection<Order>? Orders { get; set; }
     }
 }

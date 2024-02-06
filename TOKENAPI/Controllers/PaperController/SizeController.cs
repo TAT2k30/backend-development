@@ -69,5 +69,26 @@ namespace BackEndDevelopment.Controllers.PaperController
                     new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper sizes", 500));
             }
         }
+        [HttpPost("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            try
+            {
+                var paperSizeDel = await _dbContext.PaperSizes.FirstOrDefaultAsync(x => x.Id == id);
+                if (paperSizeDel != null)
+                {
+                    _dbContext.PaperSizes.Remove(paperSizeDel);
+                    await _dbContext.SaveChangesAsync();
+                    return Ok(new ResponseiveAPI<string>("Paper size deleted successfully", "Delete paper size", 200));
+                }
+                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Delete paper size", 400));
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper sizes", 500));
+            }
+        }
     }
 }

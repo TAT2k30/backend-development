@@ -22,6 +22,27 @@ namespace BackEndDevelopment.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("BackEndDevelopment.Models.DTOS_FOR_RELATIONSHIPS.ProductCategoryImage", b =>
+                {
+                    b.Property<int?>("ProductCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("ProductCategoryId", "ImageId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("ProductCategoriesImages", (string)null);
+                });
+
             modelBuilder.Entity("BackEndDevelopment.Models.Image", b =>
                 {
                     b.Property<int>("Id")
@@ -36,21 +57,19 @@ namespace BackEndDevelopment.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
+                    b.Property<int?>("ProductCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Images");
                 });
@@ -66,19 +85,17 @@ namespace BackEndDevelopment.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("OrderDate")
+                    b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShippingAddress")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("TotalAmount")
+                    b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int?>("UserId")
@@ -99,13 +116,10 @@ namespace BackEndDevelopment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId1")
                         .HasColumnType("int");
 
                     b.Property<int?>("TechnicalFrameId")
@@ -122,11 +136,9 @@ namespace BackEndDevelopment.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductId1");
 
                     b.HasIndex("TechnicalFrameId");
 
@@ -156,9 +168,6 @@ namespace BackEndDevelopment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
 
@@ -178,6 +187,10 @@ namespace BackEndDevelopment.Migrations
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Dimensions")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -185,9 +198,6 @@ namespace BackEndDevelopment.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
@@ -216,9 +226,6 @@ namespace BackEndDevelopment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<bool?>("Status")
                         .HasColumnType("bit");
 
@@ -235,29 +242,15 @@ namespace BackEndDevelopment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("Status")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -270,6 +263,9 @@ namespace BackEndDevelopment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -278,9 +274,17 @@ namespace BackEndDevelopment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategories");
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("TOKENAPI.Models.User", b =>
@@ -327,19 +331,32 @@ namespace BackEndDevelopment.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("BackEndDevelopment.Models.DTOS_FOR_RELATIONSHIPS.ProductCategoryImage", b =>
+                {
+                    b.HasOne("BackEndDevelopment.Models.Image", "Image")
+                        .WithMany("ProductCategoryImages")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BackEndDevelopment.Models.ProductProps.ProductCategory", "ProductCategory")
+                        .WithMany("ProductCategoryImages")
+                        .HasForeignKey("ProductCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+
+                    b.Navigation("ProductCategory");
+                });
+
             modelBuilder.Entity("BackEndDevelopment.Models.Image", b =>
                 {
-                    b.HasOne("BackEndDevelopment.Models.OrderProps.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId");
+                    b.HasOne("TOKENAPI.Models.User", "User")
+                        .WithMany("Image")
+                        .HasForeignKey("UserId");
 
-                    b.HasOne("BackEndDevelopment.Models.ProductProps.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BackEndDevelopment.Models.OrderProps.Order", b =>
@@ -353,17 +370,13 @@ namespace BackEndDevelopment.Migrations
 
             modelBuilder.Entity("BackEndDevelopment.Models.OrderProps.OrderItem", b =>
                 {
+                    b.HasOne("BackEndDevelopment.Models.ProductProps.ProductCategory", "Category")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("BackEndDevelopment.Models.OrderProps.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
-
-                    b.HasOne("BackEndDevelopment.Models.ProductProps.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.HasOne("BackEndDevelopment.Models.ProductProps.Product", null)
-                        .WithMany("OrderItems")
-                        .HasForeignKey("ProductId1");
 
                     b.HasOne("BackEndDevelopment.Models.PaperProperties.PaperFrame", "TechnicalFrame")
                         .WithMany("OrderItems")
@@ -377,9 +390,9 @@ namespace BackEndDevelopment.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("TechnicalTypeId");
 
-                    b.Navigation("Order");
+                    b.Navigation("Category");
 
-                    b.Navigation("Product");
+                    b.Navigation("Order");
 
                     b.Navigation("TechnicalFrame");
 
@@ -388,13 +401,18 @@ namespace BackEndDevelopment.Migrations
                     b.Navigation("TechnicalType");
                 });
 
-            modelBuilder.Entity("BackEndDevelopment.Models.ProductProps.Product", b =>
+            modelBuilder.Entity("BackEndDevelopment.Models.ProductProps.ProductCategory", b =>
                 {
-                    b.HasOne("BackEndDevelopment.Models.ProductProps.ProductCategory", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                    b.HasOne("BackEndDevelopment.Models.ProductProps.Product", "Product")
+                        .WithMany("Category")
+                        .HasForeignKey("ProductId");
 
-                    b.Navigation("Category");
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("BackEndDevelopment.Models.Image", b =>
+                {
+                    b.Navigation("ProductCategoryImages");
                 });
 
             modelBuilder.Entity("BackEndDevelopment.Models.OrderProps.Order", b =>
@@ -419,16 +437,20 @@ namespace BackEndDevelopment.Migrations
 
             modelBuilder.Entity("BackEndDevelopment.Models.ProductProps.Product", b =>
                 {
-                    b.Navigation("OrderItems");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("BackEndDevelopment.Models.ProductProps.ProductCategory", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("OrderItems");
+
+                    b.Navigation("ProductCategoryImages");
                 });
 
             modelBuilder.Entity("TOKENAPI.Models.User", b =>
                 {
+                    b.Navigation("Image");
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

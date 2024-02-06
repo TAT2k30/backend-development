@@ -20,7 +20,7 @@ namespace BackEndDevelopment.Controllers
         public async Task<ActionResult<ResponseiveAPI<IEnumerable<Image>>>> Get()
         {
             var image = await _dbContext.Images.ToListAsync();
-            return Ok(new ResponseiveAPI<IEnumerable<Image>>(image, "Get all paper sizes successfully", 200));
+            return Ok(new ResponseiveAPI<IEnumerable<Image>>(image, "Get all images successfully", 200));
         }
         
     }

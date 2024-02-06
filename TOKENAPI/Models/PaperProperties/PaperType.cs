@@ -17,6 +17,6 @@ namespace BackEndDevelopment.Models.PaperProperties
         public DateTime? CreatedAt { get; set; }
 
         // Navigation Property
-        public List<OrderItem>? OrderItems { get; set; }
+        public ICollection<OrderItem>? OrderItems { get; set; }
     }
 }

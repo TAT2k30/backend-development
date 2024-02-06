@@ -22,6 +22,7 @@ namespace BackEndDevelopment.Models.ProductProps
 
         // Navigation Property
         public Product? Product { get; set; }
-        public ICollection<ProductCategoryImage>? ProductImage { get; set; }
+        public ICollection<ProductCategoryImage>? ProductCategoryImages { get; set; } // Add this navigation property
+        public ICollection<OrderItem>? OrderItems { get; set; }
     }
 }

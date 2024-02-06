@@ -9,11 +9,11 @@ namespace BackEndDevelopment.Models.DTOS_FOR_RELATIONSHIPS
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int ImageId { get; set; }
 
-        //Navigation properties
-        public List<ProductCategory>? Category { get; set; }
-        public List<Image>? Images { get; set; }
+        // Navigation properties
+        public int? ProductCategoryId { get; set; }
+        public ProductCategory? ProductCategory { get; set; } // Add this navigation property
+        public int? ImageId { get; set; }
+        public Image? Image { get; set; }
     }
 }

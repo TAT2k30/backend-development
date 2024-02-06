@@ -15,11 +15,13 @@ namespace BackEndDevelopment.Models.OrderProps
         public int? TechnicalTypeId { get; set; }
         public int? TechnicalFrameId { get; set; }
 
-        // Navigation Properties
-        public ICollection<Order>? Order { get; set; }
+        // Navigation Properties 
         public ProductCategory? Category { get; set; }
         public PaperSize? TechnicalSize { get; set; }
         public PaperType? TechnicalType { get; set; }
         public PaperFrame? TechnicalFrame { get; set; }
+
+        public int? OrderId { get; set; }
+        public Order? Order { get; set; }
     }
 }

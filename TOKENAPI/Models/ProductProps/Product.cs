@@ -13,6 +13,6 @@ namespace BackEndDevelopment.Models.ProductProps
         [Required]
         public string Description { get; set; }
         //Navigation props
-        public List<ProductCategory>? Category { get; set; }
+        public ICollection<ProductCategory>? Category { get; set; }
     }
 }

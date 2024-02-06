@@ -27,7 +27,7 @@ namespace TOKENAPI.Models
         public string? AvatarUrl { get; set; }
 
         //Navigation props
-        public List<Image>? Image { get; set; }
-        public List<Order>? Orders { get; set; }
+        public ICollection<Image>? Image { get; set; }
+        public ICollection<Order>? Orders { get; set; }
     }
 }

@@ -8,9 +8,9 @@ using BackEndDevelopment.Models.DTOS_FOR_RELATIONSHIPS;
 
 namespace TOKENAPI.Models
 {
-    public class DatabaseContext:DbContext
+    public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions options):base(options) { }
+        public DatabaseContext(DbContextOptions options) : base(options) { }
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
@@ -28,18 +28,16 @@ namespace TOKENAPI.Models
                  .WithMany(u => u.Orders)
                  .HasForeignKey(o => o.UserId);
 
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.OrderItem)
-                .WithOne(oi => oi.Order)
-                .HasForeignKey<OrderItem>(oi => oi.OrderId)
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(oi => oi.OrderId)
                 .IsRequired(false);
-
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Category)
-                .WithMany(c => c.OrderItem)
-                .HasForeignKey(oi => oi.CategoryId)
-                .IsRequired(false);
+                .WithMany(c => c.OrderItems)
+                .HasForeignKey(oi => oi.CategoryId);
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.TechnicalSize)
@@ -61,15 +59,31 @@ namespace TOKENAPI.Models
                 .WithMany(p => p.Category)
                 .HasForeignKey(pc => pc.ProductId);
 
-            modelBuilder.Entity<ProductCategoryImage>()
-                .HasMany(pci => pci.Category)
-                .WithMany(pc => pc.ProductImage)
-                .UsingEntity(j => j.ToTable("ProductCategoriesImages"));
+            modelBuilder.Entity<ProductCategory>()
+                .HasMany(pc => pc.ProductCategoryImages)
+                .WithOne(pci => pci.ProductCategory)
+                .HasForeignKey(pci => pci.ProductCategoryId);
+
+            modelBuilder.Entity<Image>()
+                .HasMany(i => i.ProductCategoryImages)
+                .WithOne(pci => pci.Image)
+                .HasForeignKey(pci => pci.ImageId);
 
             modelBuilder.Entity<ProductCategoryImage>()
-                .HasMany(pci => pci.Images)
+                .HasKey(pci => new { pci.ProductCategoryId, pci.ImageId });
+
+            modelBuilder.Entity<ProductCategoryImage>()
+                .HasOne(pci => pci.ProductCategory)
+                .WithMany(pc => pc.ProductCategoryImages)
+                .HasForeignKey(pci => pci.ProductCategoryId);
+
+            modelBuilder.Entity<ProductCategoryImage>()
+                .HasOne(pci => pci.Image)
                 .WithMany(i => i.ProductCategoryImages)
-                .UsingEntity(j => j.ToTable("ProductCategoriesImages"));
+                .HasForeignKey(pci => pci.ImageId);
+
+            modelBuilder.Entity<ProductCategoryImage>()
+                .ToTable("ProductCategoriesImages");
 
             modelBuilder.Entity<Image>()
                 .HasOne(i => i.User)

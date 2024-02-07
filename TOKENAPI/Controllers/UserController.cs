@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using TOKENAPI.Models;
 using TOKENAPI.Services;
 using TOKENAPI.Models;
+using BackEndDevelopment.Models.DTOS;
 
 namespace TOKENAPI.Controllers
 {
@@ -43,7 +44,10 @@ namespace TOKENAPI.Controllers
         {
             try
             {
-                var users = await _dbContext.Users.ToListAsync();
+                var users = await _dbContext.Users
+                    .Include(u => u.Orders)
+                    .Include(u => u.Image)
+                    .ToListAsync();
                 var response = new ResponseiveAPI<IEnumerable<User>>(users, "Data retrieved successfully", 200);
                 return Ok(response);
             }
@@ -52,6 +56,45 @@ namespace TOKENAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<User>.Exception(ex));
             }
         }
+        [HttpPost("AddRangeUser")]
+       [HttpPost("AddRangeUser")]
+        public async Task<ActionResult<ResponseiveAPI<IEnumerable<User>>>> CreateRange(List<AddRangeUserDTO> users)
+        {
+            try
+            {
+                if (users == null || users.Count == 0)
+                {
+                    return BadRequest("List of users is empty");
+                }
+
+                List<User> usersToAdd = new List<User>();
+
+                foreach (var user in users)
+                {
+                    var newUser = new User
+                    {
+                        Email = user.Email,
+                        Gender = user.Gender,
+                        DateOfBirth = user.DateOfBirth,
+                        UserName = user.UserName,
+                        Password = user.Password,
+                        Role = user.Role
+                    };
+                    usersToAdd.Add(newUser);
+                }
+
+                await _dbContext.Users.AddRangeAsync(usersToAdd);
+                await _dbContext.SaveChangesAsync();
+
+                var response = new ResponseiveAPI<IEnumerable<User>>(usersToAdd, "Users created successfully", 201);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<User>.Exception(ex));
+            }
+        }
+    
 
         [HttpPost]
         public async Task<ActionResult> CreateUserAccount([FromForm] User user, IFormFile? image)

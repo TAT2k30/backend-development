@@ -37,14 +37,55 @@ namespace BackEndDevelopment.Controllers
             return BadRequest(ResponseiveAPI<Image>.BadRequest(ModelState));
         }
         [HttpPost()]
-        public async Task<ActionResult<ResponseiveAPI<Image>>> Create([FromForm] Image image, ICollection<IFormFile> files)
+        public async Task<ActionResult<ResponseiveAPI<Image>>> Create([FromForm] ICollection<Image> images, ICollection<IFormFile> files, int userID)
         {
             if (!ModelState.IsValid || files == null || !files.Any())
             {
                 return BadRequest(ResponseiveAPI<Image>.BadRequest(ModelState));
             }
-
-        }
         
+            List<string> imgUrl = new List<string>();
+            foreach (var file in files)
+            {
+                var result = FileHandler.SaveImage("PrintingPhoto", file);
+                imgUrl.Add(result);
+            }
+
+            List<Image> imageAdding = new List<Image>();
+            for (int i = 0; i < images.Count; i++)
+            {
+         
+                if (i >= imgUrl.Count)
+                {
+                    return BadRequest(new ResponseiveAPI<Image>(null, "Not enough image files provided", 400));
+                }
+                var newImage = new Image
+                {
+                    Title = images.ElementAt(i).Title,
+                    ImageUrl = imgUrl[i],
+                    Description = images.ElementAt(i).Description,
+                    UserId = userID
+                };
+                imageAdding.Add(newImage);
+            }
+
+            try
+            {
+                await _dbContext.Images.AddRangeAsync(imageAdding);
+                await _dbContext.SaveChangesAsync();
+                return Ok(new ResponseiveAPI<List<Image>>(imageAdding, "Images created successfully", 201));
+            }
+            catch (Exception ex)
+            {
+              
+                foreach (var img in imgUrl)
+                {
+                    FileHandler.DeleteImage(img);
+                }
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<Image>(null, "Error occurred while saving images", 500));
+            }
+        }
+
+
     }
 }

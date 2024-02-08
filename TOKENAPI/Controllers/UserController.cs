@@ -56,7 +56,6 @@ namespace TOKENAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<User>.Exception(ex));
             }
         }
-        [HttpPost("AddRangeUser")]
        [HttpPost("AddRangeUser")]
         public async Task<ActionResult<ResponseiveAPI<IEnumerable<User>>>> CreateRange(List<AddRangeUserDTO> users)
         {
@@ -107,28 +106,33 @@ namespace TOKENAPI.Controllers
                 }
 
                 var currentDay = DateTime.Now;
+                if (user.DateOfBirth > currentDay)
+                {
+                    return BadRequest("Date of birth cannot be in the future.");
+                }
                 var age = currentDay.Year - user.DateOfBirth.Year;
-                _logger.LogInformation("Age :", user.DateOfBirth);
+                if (currentDay.Month < user.DateOfBirth.Month || (currentDay.Month == user.DateOfBirth.Month && currentDay.Day < user.DateOfBirth.Day))
+                {
+                    age--;
+                }
+                if (age < 5)
+                {
+                    return BadRequest("Age must be at least 5 years old to create an account.");
+                }
                 var rootUrl = "http://localhost:5085/";
                 var genderFolder = user.Gender ? "Male" : "Female";
                 var baseFolder = $"Uploads/DefaultImage/{genderFolder}";
-
                 if (image == null)
                 {
-                    _logger.LogInformation("Age setting if image null :");
                     user.AvatarUrl = DetermineDefaultAvatarUrl(age, rootUrl, baseFolder);
                 }
-
                 user.LastLoginTime = currentDay;
-
                 if (image != null)
                 {
                     user.AvatarUrl = FileHandler.SaveImage("UserAvatar", image);
                 }
-               
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
-
                 return Ok(new ResponseiveAPI<User>(user, "User created successfully", 201));
             }
             catch (Exception ex)

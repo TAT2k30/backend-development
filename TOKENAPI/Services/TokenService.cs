@@ -14,7 +14,7 @@ namespace TOKENAPI.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[] {
-          
+                new Claim("UserId", user.Id.ToString()),
                 new Claim("Email",user.Email),
                 new Claim("UserName",user.UserName),
                 new Claim("Status",(user.Status == true ? "Online":"Offline")),

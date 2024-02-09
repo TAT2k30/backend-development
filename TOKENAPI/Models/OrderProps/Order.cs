@@ -26,6 +26,7 @@ namespace BackEndDevelopment.Models.OrderProps
         public DateTime? CreatedAt { get; set; }
 
         public int? UserId { get; set; }
+
         public User? User { get; set; }
 
         public ICollection<OrderItem>? OrderItems { get; set; }

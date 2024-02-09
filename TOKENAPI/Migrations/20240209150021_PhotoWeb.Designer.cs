@@ -12,7 +12,7 @@ using TOKENAPI.Models;
 namespace BackEndDevelopment.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240206145835_PhotoWeb")]
+    [Migration("20240209150021_PhotoWeb")]
     partial class PhotoWeb
     {
         /// <inheritdoc />
@@ -99,7 +99,7 @@ namespace BackEndDevelopment.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -135,7 +135,7 @@ namespace BackEndDevelopment.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal?>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 

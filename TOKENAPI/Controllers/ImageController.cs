@@ -1,6 +1,7 @@
 ﻿using BackEndDevelopment.Models;
 using BackEndDevelopment.Models.DTOS;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -29,7 +30,7 @@ namespace BackEndDevelopment.Controllers
         }
 
         [HttpPost("{userId}")]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<string>>>> GetImageByUserId(int userId)
+        public async Task<ActionResult<ResponseiveAPI<IEnumerable<ImageResponseModel>>>> GetImageByUserId(int userId)
         {
             var userExist = await _dbContext.Users.FindAsync(userId);
             if (userExist == null)
@@ -43,8 +44,13 @@ namespace BackEndDevelopment.Controllers
 
             if (images != null && images.Any())
             {
-                var imgUrls = images.Select(img => img.ImageUrl).ToList();
-                return Ok(new ResponseiveAPI<IEnumerable<string>>(imgUrls, $"Images for user with id : {userId} retrieved successfully", 200));
+                var imageResponseList = images.Select(img => new ImageResponseModel
+                {
+                    Id = img.Id,
+                    ImageUrl = img.ImageUrl
+                }).ToList();
+
+                return Ok(new ResponseiveAPI<IEnumerable<ImageResponseModel>>(imageResponseList, $"Images for user with id : {userId} retrieved successfully", 200));
             }
             else
             {
@@ -52,56 +58,89 @@ namespace BackEndDevelopment.Controllers
             }
         }
 
+        public class ImageResponseModel
+        {
+            public int Id { get; set; }
+            public string ImageUrl { get; set; }
+        }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseiveAPI<List<Image>>>> Create([FromForm] ICollection<IFormFile> files, [FromForm] string userID)
+        public async Task<ActionResult<ResponseiveAPI<List<Image>>>> Create([FromForm] ICollection<IFormFile> files, [FromForm] string userID, [FromForm] List<string> fileNames)
         {
             List<string> imgUrl = new List<string>();
             int userId = Int32.Parse(userID);
             try
             {
+                // Kiểm tra tính hợp lệ của dữ liệu đầu vào
                 if (!ModelState.IsValid || files == null || !files.Any())
                 {
-                    return BadRequest(ResponseiveAPI<Image>.BadRequest(ModelState));
+                    return BadRequest(new ResponseiveAPI<string>("Not match validation", "Some of the fields do not match your request", 400));
                 }
+
+
                 var user = await _dbContext.Users.FindAsync(userId);
-                List<Image> imagesToAdd = new List<Image>();
                 if (user == null)
                 {
                     return NotFound(new ResponseiveAPI<string>("Fetching User", $"User with id : {userId} not found", 404));
                 }
-                // Lưu đường dẫn được tạo trong Method bên Service vào trong List Url
+
+                List<Image> imagesToAdd = new List<Image>();
+                int number = 0;
+                var fileNum = 0;
                 foreach (var file in files)
                 {
-                    var result = FileHandler.SaveImage("PrintingPhoto", file);
+                    fileNum++;
+                }
+                _logger.LogInformation($"Files count: {fileNum}/{files.Count}");
+                var nameNum = 0;
+                foreach(var file in fileNames)
+                {
+                    nameNum++;
+                }
+                _logger.LogInformation($"Name List<string> count: {nameNum}/{fileNames.Count}");
+                List<string> imgResponse = new List<string>();
+
+                foreach (var file in files)
+                {
+                    // Lưu file và lấy đường dẫn trả về
+                    var result =  FileHandler.SaveImage("PrintingPhoto", file);
+                    
                     imgUrl.Add(result);
-                    int number = 0;
-                    var newImage = new Image
+                    imgResponse.Add(result.ToString());
+                var newImage = new Image
                     {
-                        Title = files.ElementAt(number).FileName,
+                        Title = !String.IsNullOrEmpty(fileNames[number]) ? fileNames[number] : file.FileName,
                         Description = "",
-                        ImageUrl = imgUrl[number],
+                        ImageUrl = result,
                         UserId = userId,
                         ProductCategoryId = null,
                     };
                     imagesToAdd.Add(newImage);
-                    await _dbContext.Images.AddAsync(newImage);
                     number++;
                 }
+
+              
+                await _dbContext.Images.AddRangeAsync(imagesToAdd);
                 await _dbContext.SaveChangesAsync();
-                await _dbContext.Images.ToListAsync();
-                return Ok(new ResponseiveAPI<List<Image>>(imagesToAdd, "Images created successfully", 201));
+               
+                return Ok(new ResponseiveAPI<List<string>>(imgResponse, "Images created successfully", 201));
             }
             catch (Exception ex)
             {
+                // Trong trường hợp có lỗi, xóa tất cả các ảnh đã lưu trữ
                 foreach (var img in imgUrl)
                 {
                     FileHandler.DeleteImage(img);
                 }
-                _logger.LogInformation(ex.Message);
+
+                // Ghi log lỗi
+                _logger.LogError(ex, "Error creating images");
+
+                // Trả về lỗi 500 và thông báo lỗi
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<string>(ex.Message, "Error creating images", 500));
             }
         }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<ResponseiveAPI<Image>>> Delete(int id)
         {

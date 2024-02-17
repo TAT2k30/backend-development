@@ -11,10 +11,12 @@ namespace BackEndDevelopment.Controllers.PaperController
     [ApiController]
     public class SizeController : ControllerBase
     {
+        private readonly ILogger<SizeController> _logger;
         private readonly DatabaseContext _dbContext;
-        public SizeController(DatabaseContext dbContext)
+        public SizeController(DatabaseContext dbContext, ILogger<SizeController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -31,8 +33,16 @@ namespace BackEndDevelopment.Controllers.PaperController
             {
                 if (ModelState.IsValid)
                 {
-                    // Thêm một kích thước giấy mới vào cơ sở dữ liệu
-                    _dbContext.PaperSizes.Add(paperSize);
+                    var submitSize = new PaperSize()
+                    {
+                        Name = paperSize.Name,
+                        Dimensions = paperSize.Dimensions,
+                        Description = paperSize.Description,
+                        Status = false,
+                        CreatedAt = DateTime.Now,
+                    };
+
+                    _dbContext.PaperSizes.Add(submitSize);
                     await _dbContext.SaveChangesAsync();
 
                     return Ok(new ResponseiveAPI<string>("Paper size created successfully", "Create paper size", 200));
@@ -69,7 +79,7 @@ namespace BackEndDevelopment.Controllers.PaperController
                     new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper sizes", 500));
             }
         }
-        [HttpPost("{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             try
@@ -90,5 +100,6 @@ namespace BackEndDevelopment.Controllers.PaperController
                     new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper sizes", 500));
             }
         }
+       
     }
 }

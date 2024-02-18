@@ -27,7 +27,7 @@ namespace BackEndDevelopment.Controllers.PaperController
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(PaperSize paperSize)
+        public async Task<ActionResult> Create([FromForm]PaperSize paperSize)
         {
             try
             {

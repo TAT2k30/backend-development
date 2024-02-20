@@ -12,7 +12,7 @@ using TOKENAPI.Models;
 namespace BackEndDevelopment.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240209150021_PhotoWeb")]
+    [Migration("20240220054916_PhotoWeb")]
     partial class PhotoWeb
     {
         /// <inheritdoc />
@@ -250,6 +250,13 @@ namespace BackEndDevelopment.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PImgUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

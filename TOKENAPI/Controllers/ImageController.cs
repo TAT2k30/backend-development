@@ -23,19 +23,19 @@ namespace BackEndDevelopment.Controllers
             _logger = logger;
         }
         [HttpGet]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<Image>>>> Get()
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<Image>>>> Get()
         {
             var image = await _dbContext.Images.ToListAsync();
-            return Ok(new ResponseiveAPI<IEnumerable<Image>>(image, "Get all images successfully", 200));
+            return Ok(new ResponsiveAPI<IEnumerable<Image>>(image, "Get all images successfully", 200));
         }
 
         [HttpPost("{userId}")]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<ImageResponseModel>>>> GetImageByUserId(int userId)
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<ImageResponseModel>>>> GetImageByUserId(int userId)
         {
             var userExist = await _dbContext.Users.FindAsync(userId);
             if (userExist == null)
             {
-                return BadRequest(new ResponseiveAPI<string>("No user", "No user id match your request", 404));
+                return BadRequest(new ResponsiveAPI<string>("No user", "No user id match your request", 404));
             }
 
             var images = await _dbContext.Images
@@ -50,11 +50,11 @@ namespace BackEndDevelopment.Controllers
                     ImageUrl = img.ImageUrl
                 }).ToList();
 
-                return Ok(new ResponseiveAPI<IEnumerable<ImageResponseModel>>(imageResponseList, $"Images for user with id : {userId} retrieved successfully", 200));
+                return Ok(new ResponsiveAPI<IEnumerable<ImageResponseModel>>(imageResponseList, $"Images for user with id : {userId} retrieved successfully", 200));
             }
             else
             {
-                return BadRequest(new ResponseiveAPI<string>("No image", "User haven't posted any images", 200));
+                return BadRequest(new ResponsiveAPI<string>("No image", "User haven't posted any images", 404));
             }
         }
 
@@ -65,7 +65,7 @@ namespace BackEndDevelopment.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseiveAPI<List<Image>>>> Create([FromForm] ICollection<IFormFile> files, [FromForm] string userID, [FromForm] List<string> fileNames)
+        public async Task<ActionResult<ResponsiveAPI<List<Image>>>> Create([FromForm] ICollection<IFormFile> files, [FromForm] string userID, [FromForm] List<string> fileNames)
         {
             List<string> imgUrl = new List<string>();
             int userId = Int32.Parse(userID);
@@ -74,14 +74,14 @@ namespace BackEndDevelopment.Controllers
                 // Kiểm tra tính hợp lệ của dữ liệu đầu vào
                 if (!ModelState.IsValid || files == null || !files.Any())
                 {
-                    return BadRequest(new ResponseiveAPI<string>("Not match validation", "Some of the fields do not match your request", 400));
+                    return BadRequest(new ResponsiveAPI<string>("Not match validation", "Some of the fields do not match your request", 400));
                 }
 
 
                 var user = await _dbContext.Users.FindAsync(userId);
                 if (user == null)
                 {
-                    return NotFound(new ResponseiveAPI<string>("Fetching User", $"User with id : {userId} not found", 404));
+                    return NotFound(new ResponsiveAPI<string>("Fetching User", $"User with id : {userId} not found", 404));
                 }
 
                 List<Image> imagesToAdd = new List<Image>();
@@ -123,7 +123,7 @@ namespace BackEndDevelopment.Controllers
                 await _dbContext.Images.AddRangeAsync(imagesToAdd);
                 await _dbContext.SaveChangesAsync();
                
-                return Ok(new ResponseiveAPI<List<string>>(imgResponse, "Images created successfully", 201));
+                return Ok(new ResponsiveAPI<List<string>>(imgResponse, "Images created successfully", 201));
             }
             catch (Exception ex)
             {
@@ -133,32 +133,31 @@ namespace BackEndDevelopment.Controllers
                     FileHandler.DeleteImage(img);
                 }
 
-                // Ghi log lỗi
                 _logger.LogError(ex, "Error creating images");
 
-                // Trả về lỗi 500 và thông báo lỗi
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<string>(ex.Message, "Error creating images", 500));
+           
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponsiveAPI<string>(ex.Message, "Error creating images", 500));
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ResponseiveAPI<Image>>> Delete(int id)
+        public async Task<ActionResult<ResponsiveAPI<Image>>> Delete(int id)
         {
             try
             {
                 var imgDel = await _dbContext.Images.FindAsync(id);
                 if (imgDel == null)
                 {
-                    return BadRequest(new ResponseiveAPI<string>("Image not found", $"Image with id : {id} not found.", 404));
+                    return BadRequest(new ResponsiveAPI<string>("Image not found", $"Image with id : {id} not found.", 404));
                 }
                 FileHandler.DeleteImage(imgDel.ImageUrl);
                 _dbContext.Images.Remove(imgDel);
                 await _dbContext.SaveChangesAsync();
-                return Ok(new ResponseiveAPI<Image>(imgDel,$"Image with id : {id} deleted successfully.",200));
+                return Ok(new ResponsiveAPI<Image>(imgDel,$"Image with id : {id} deleted successfully.",200));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<string>(ex.Message, "Error deleting image", 500));
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponsiveAPI<string>(ex.Message, "Error deleting image", 500));
             }
         }
     }

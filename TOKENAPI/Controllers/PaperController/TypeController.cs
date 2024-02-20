@@ -18,10 +18,10 @@ namespace BackEndDevelopment.Controllers.PaperController
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<PaperType>>>> Get()
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<PaperType>>>> Get()
         {
             var types = await _dbContext.PaperTypes.ToListAsync();
-            return Ok(new ResponseiveAPI<IEnumerable<PaperType>>(types, "Get all paper types successfully", 200));
+            return Ok(new ResponsiveAPI<IEnumerable<PaperType>>(types, "Get all paper types successfully", 200));
         }
 
         [HttpPost]
@@ -35,15 +35,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                     _dbContext.PaperTypes.Add(paperType);
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponseiveAPI<string>("Paper type created successfully", "Create paper type", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper type created successfully", "Create paper type", 200));
                 }
 
-                return BadRequest(new ResponseiveAPI<string>("Invalid model type", "Create paper type", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model type", "Create paper type", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper type", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper type", 500));
             }
         }
 
@@ -57,15 +57,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                     _dbContext.PaperTypes.AddRange(paperTypes);
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponseiveAPI<string>("Paper type created successfully", "Create paper type", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper type created successfully", "Create paper type", 200));
                 }
 
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Create paper type", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper type", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper type", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper type", 500));
             }
         }
         [HttpPost("{id}")]
@@ -78,14 +78,14 @@ namespace BackEndDevelopment.Controllers.PaperController
                 {
                     _dbContext.PaperTypes.Remove(paperTypeDel);
                     await _dbContext.SaveChangesAsync();
-                    return Ok(new ResponseiveAPI<string>("Paper type deleted successfully", "Delete paper type", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper type deleted successfully", "Delete paper type", 200));
                 }
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Delete paper type", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Delete paper type", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper type", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper type", 500));
             }
         }
     }

@@ -20,10 +20,10 @@ namespace BackEndDevelopment.Controllers.PaperController
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<PaperSize>>>> Get()
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<PaperSize>>>> Get()
         {
             var sizes = await _dbContext.PaperSizes.ToListAsync();
-            return Ok(new ResponseiveAPI<IEnumerable<PaperSize>>(sizes, "Get all paper sizes successfully", 200));
+            return Ok(new ResponsiveAPI<IEnumerable<PaperSize>>(sizes, "Get all paper sizes successfully", 200));
         }
 
         [HttpPost]
@@ -45,15 +45,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                     _dbContext.PaperSizes.Add(submitSize);
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponseiveAPI<string>("Paper size created successfully", "Create paper size", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper size created successfully", "Create paper size", 200));
                 }
 
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Create paper size", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper size", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper size", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper size", 500));
             }
         }
 
@@ -68,15 +68,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                     _dbContext.PaperSizes.AddRange(paperSizes);
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponseiveAPI<string>("Paper sizes created successfully", "Create paper sizes", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper sizes created successfully", "Create paper sizes", 200));
                 }
 
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Create paper sizes", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper sizes", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper sizes", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper sizes", 500));
             }
         }
         [HttpDelete("{id}")]
@@ -89,15 +89,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                 {
                     _dbContext.PaperSizes.Remove(paperSizeDel);
                     await _dbContext.SaveChangesAsync();
-                    return Ok(new ResponseiveAPI<string>("Paper size deleted successfully", "Delete paper size", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper size deleted successfully", "Delete paper size", 200));
                 }
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Delete paper size", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Delete paper size", 400));
             }
             catch (Exception ex)
             {
 
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper sizes", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper sizes", 500));
             }
         }
        

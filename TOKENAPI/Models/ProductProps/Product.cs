@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace BackEndDevelopment.Models.ProductProps
 {
     public class Product
+
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,6 +13,8 @@ namespace BackEndDevelopment.Models.ProductProps
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }
+        public string? Status { get; set; }
+        public string? PImgUrl { get; set; }
         //Navigation props
         public ICollection<ProductCategory>? Category { get; set; }
     }

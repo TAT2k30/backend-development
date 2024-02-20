@@ -37,7 +37,7 @@ namespace TOKENAPI.Controllers
             }
             else
             {
-                return NotFound(new ResponseiveAPI<User>(null, "No account match your credential", 404));
+                return NotFound(new ResponsiveAPI<User>(null, "No account match your credential", 404));
             }
         }
         [HttpPost("register")]
@@ -48,11 +48,11 @@ namespace TOKENAPI.Controllers
                 var checkEmail = await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == registerForm.Email);
                 if (checkEmail != null)
                 {
-                    return Conflict(new ResponseiveAPI<object>(null, "Email already taken", 409));
+                    return Conflict(new ResponsiveAPI<object>(null, "Email already taken", 409));
                 }
                 if (!ModelState.IsValid)
                 {
-                    return BadRequest(new ResponseiveAPI<object>(null, "Invalid input data", 400));
+                    return BadRequest(new ResponsiveAPI<object>(null, "Invalid input data", 400));
                 }
 
                 var submitUser = new User
@@ -75,16 +75,16 @@ namespace TOKENAPI.Controllers
 
                 if (response is OkObjectResult)
                 {
-                    return Ok(new ResponseiveAPI<object>(null, "User registered successfully", 200));
+                    return Ok(new ResponsiveAPI<object>(null, "User registered successfully", 200));
                 }
                 else
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<object>(null, "User registration failed", 500));
+                    return StatusCode(StatusCodes.Status500InternalServerError, new ResponsiveAPI<object>(null, "User registration failed", 500));
                 }
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseiveAPI<object>(null, "Database error during user registration", 500));
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponsiveAPI<object>(null, "Database error during user registration", 500));
             }
         }
 

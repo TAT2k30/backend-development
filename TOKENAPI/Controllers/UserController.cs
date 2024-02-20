@@ -38,8 +38,25 @@ namespace TOKENAPI.Controllers
 
             _logger = logger;
         }
+        [HttpGet]
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<User>>>> GetAllUserAccounts()
+        {
+            try
+            {
+                var users = await _dbContext.Users
+                    .Include(u => u.Orders)
+                    .Include(u => u.Image)
+                    .ToListAsync();
+                var response = new ResponsiveAPI<IEnumerable<User>>(users, "Data retrieved successfully", 200);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ResponsiveAPI<User>.Exception(ex));
+            }
+        }
         [HttpPost("{id}")]
-        public async Task<ActionResult<ResponseiveAPI<User>>> GetUserById(int id)
+        public async Task<ActionResult<ResponsiveAPI<User>>> GetUserById(int id)
         {
             try
             {
@@ -50,35 +67,19 @@ namespace TOKENAPI.Controllers
                .FirstOrDefaultAsync(u => u.Id == id);
                 if (user != null)
                 {
-                    return Ok(new ResponseiveAPI<User>(user, "Data retrieved successfully", 200));
+                    return Ok(new ResponsiveAPI<User>(user, "Data retrieved successfully", 200));
                 }
-                return BadRequest(new ResponseiveAPI<string>("Get data failed", "There is no data match your request", 404));
+                return BadRequest(new ResponsiveAPI<string>("Get data failed", "There is no data match your request", 404));
 
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<User>.Exception(ex));
+                return StatusCode(StatusCodes.Status500InternalServerError, ResponsiveAPI<User>.Exception(ex));
             }
         }
-        [HttpGet]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<User>>>> GetAllUserAccounts()
-        {
-            try
-            {
-                var users = await _dbContext.Users
-                    .Include(u => u.Orders)
-                    .Include(u => u.Image)
-                    .ToListAsync();
-                var response = new ResponseiveAPI<IEnumerable<User>>(users, "Data retrieved successfully", 200);
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<User>.Exception(ex));
-            }
-        }
+       
         [HttpPost("AddRangeUser")]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<User>>>> CreateRange(List<AddRangeUserDTO> users)
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<User>>>> CreateRange(List<AddRangeUserDTO> users)
         {
             try
             {
@@ -106,12 +107,12 @@ namespace TOKENAPI.Controllers
                 await _dbContext.Users.AddRangeAsync(usersToAdd);
                 await _dbContext.SaveChangesAsync();
 
-                var response = new ResponseiveAPI<IEnumerable<User>>(usersToAdd, "Users created successfully", 201);
+                var response = new ResponsiveAPI<IEnumerable<User>>(usersToAdd, "Users created successfully", 201);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<User>.Exception(ex));
+                return StatusCode(StatusCodes.Status500InternalServerError, ResponsiveAPI<User>.Exception(ex));
             }
         }
 
@@ -123,7 +124,7 @@ namespace TOKENAPI.Controllers
             {
                 if (user == null || user.DateOfBirth == null)
                 {
-                    return BadRequest(ResponseiveAPI<User>.BadRequest(ModelState));
+                    return BadRequest(ResponsiveAPI<User>.BadRequest(ModelState));
                 }
 
                 var currentDay = DateTime.Now;
@@ -157,11 +158,11 @@ namespace TOKENAPI.Controllers
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
 
-                return Ok(new ResponseiveAPI<User>(user, "User created successfully", 201));
+                return Ok(new ResponsiveAPI<User>(user, "User created successfully", 201));
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, ResponseiveAPI<object>.Exception(ex));
+                return StatusCode(StatusCodes.Status500InternalServerError, ResponsiveAPI<object>.Exception(ex));
             }
         }
 
@@ -211,7 +212,7 @@ namespace TOKENAPI.Controllers
                 }
                 _dbContext.Remove(user);
                 await _dbContext.SaveChangesAsync();
-                return Ok(new ResponseiveAPI<User>(user, "User deleted successfully", 200));
+                return Ok(new ResponsiveAPI<User>(user, "User deleted successfully", 200));
             }
             catch (Exception)
             {

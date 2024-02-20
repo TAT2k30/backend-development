@@ -18,10 +18,10 @@ namespace BackEndDevelopment.Controllers.PaperController
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseiveAPI<IEnumerable<PaperFrame>>>> Get()
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<PaperFrame>>>> Get()
         {
             var frames = await _dbContext.PaperFrames.ToListAsync();
-            return Ok(new ResponseiveAPI<IEnumerable<PaperFrame>>(frames, "Get all paper frames successfully", 200));
+            return Ok(new ResponsiveAPI<IEnumerable<PaperFrame>>(frames, "Get all paper frames successfully", 200));
         }
 
         [HttpPost]
@@ -35,15 +35,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                     _dbContext.PaperFrames.Add(paperFrame);
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponseiveAPI<string>("Paper frame created successfully", "Create paper frame", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper frame created successfully", "Create paper frame", 200));
                 }
 
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Create paper frame", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper frame", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper frame", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper frame", 500));
             }
         }
 
@@ -57,15 +57,15 @@ namespace BackEndDevelopment.Controllers.PaperController
                     _dbContext.PaperFrames.AddRange(paperFrames);
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponseiveAPI<string>("Paper frame created successfully", "Create paper frame", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper frame created successfully", "Create paper frame", 200));
                 }
 
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Create paper frames", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper frames", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Create paper frame", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper frame", 500));
             }
         }
         [HttpPost("{id}")]
@@ -78,14 +78,14 @@ namespace BackEndDevelopment.Controllers.PaperController
                 {
                     _dbContext.PaperFrames.Remove(paperFrameDel);
                     await _dbContext.SaveChangesAsync();
-                    return Ok(new ResponseiveAPI<string>("Paper frame deleted successfully", "Delete paper frame", 200));
+                    return Ok(new ResponsiveAPI<string>("Paper frame deleted successfully", "Delete paper frame", 200));
                 }
-                return BadRequest(new ResponseiveAPI<string>("Invalid model state", "Delete paper frame", 400));
+                return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Delete paper frame", 400));
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponseiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper frame", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper frame", 500));
             }
         }
     }

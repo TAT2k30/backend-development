@@ -54,7 +54,19 @@ namespace BackEndDevelopment.Controllers.PaperController
             {
                 if (ModelState.IsValid)
                 {
-                    _dbContext.PaperTypes.AddRange(paperTypes);
+                    foreach (var type in paperTypes)
+                    {
+                        var submitType = new PaperType()
+                        {
+                            Name = type.Name,
+                            Description = type.Description,
+                            Status = false,
+                            CreatedAt = DateTime.Now,
+                        };
+                        await _dbContext.PaperTypes.AddAsync(submitType);
+                    }
+
+
                     await _dbContext.SaveChangesAsync();
 
                     return Ok(new ResponsiveAPI<string>("Paper type created successfully", "Create paper type", 200));

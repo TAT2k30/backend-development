@@ -12,7 +12,7 @@ using TOKENAPI.Models;
 namespace BackEndDevelopment.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240220054916_PhotoWeb")]
+    [Migration("20240225155128_PhotoWeb")]
     partial class PhotoWeb
     {
         /// <inheritdoc />
@@ -187,14 +187,14 @@ namespace BackEndDevelopment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Acreage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dimensions")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -257,7 +257,6 @@ namespace BackEndDevelopment.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

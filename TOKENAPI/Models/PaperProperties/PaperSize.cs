@@ -12,7 +12,7 @@ namespace BackEndDevelopment.Models.PaperProperties
         [Required]
         public string Name { get; set; }
         [Required]
-        public string Dimensions { get; set; }
+        public string Acreage { get; set; }
         [Required]
         public string Description { get; set; }
         public bool? Status { get; set; }

@@ -36,7 +36,7 @@ namespace BackEndDevelopment.Controllers.PaperController
                     var submitSize = new PaperSize()
                     {
                         Name = paperSize.Name,
-                        Dimensions = paperSize.Dimensions,
+                        Acreage = paperSize.Acreage,
                         Description = paperSize.Description,
                         Status = false,
                         CreatedAt = DateTime.Now,
@@ -64,11 +64,23 @@ namespace BackEndDevelopment.Controllers.PaperController
             {
                 if (ModelState.IsValid)
                 {
-                    // Thêm một dãy kích thước giấy mới vào cơ sở dữ liệu
-                    _dbContext.PaperSizes.AddRange(paperSizes);
+                    foreach (var size in paperSizes)
+                    {
+                        var submitSize = new PaperSize()
+                        {
+                            Name = size.Name,
+                            Acreage = size.Acreage,
+                            Description = size.Description,
+                            Status = false,
+                            CreatedAt = DateTime.Now,
+                        };
+                        await _dbContext.PaperSizes.AddAsync(submitSize);
+                    }
+                    
+                    
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponsiveAPI<string>("Paper sizes created successfully", "Create paper sizes", 200));
+                    return Ok(new ResponsiveAPI<string>("Range of sizes created successfully", "Create paper sizes", 200));
                 }
 
                 return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper sizes", 400));
@@ -98,6 +110,28 @@ namespace BackEndDevelopment.Controllers.PaperController
 
                 return StatusCode(StatusCodes.Status500InternalServerError,
                     new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Delete paper sizes", 500));
+            }
+        }
+        [HttpPut]
+        public async Task<ActionResult<ResponsiveAPI<PaperSize>>> UpdateSize (int id,[FromForm] PaperSize paperSize)
+        {
+            var sizeUpdate = await _dbContext.PaperSizes.FindAsync(id);
+            if (sizeUpdate == null)
+            {
+                return BadRequest(new ResponsiveAPI<string>("Size not found", $"Your size's id:{id} not found", 404));    
+            }
+            try
+            {
+                sizeUpdate.Description = paperSize.Description;
+                sizeUpdate.Name = paperSize.Name;
+                sizeUpdate.Acreage = paperSize.Acreage;
+                await _dbContext.SaveChangesAsync();
+                return Ok(new ResponsiveAPI<PaperSize>(sizeUpdate, "Size updated successfully", 200));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                                  new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Update paper size", 500));
             }
         }
        

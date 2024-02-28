@@ -50,14 +50,27 @@ namespace BackEndDevelopment.Controllers.PaperController
         [HttpPost("createrange")]
         public async Task<ActionResult> CreateRange(List<PaperFrame> paperFrames)
         {
+
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _dbContext.PaperFrames.AddRange(paperFrames);
+                    foreach (var frame in paperFrames)
+                    {
+                        var submitFrame = new PaperFrame()
+                        {
+                            Name = frame.Name,
+                            Description = frame.Description,
+                            Status = false,
+                            CreatedAt = DateTime.Now,
+                        };
+                        await _dbContext.PaperFrames.AddAsync(submitFrame);
+                    }
+
+
                     await _dbContext.SaveChangesAsync();
 
-                    return Ok(new ResponsiveAPI<string>("Paper frame created successfully", "Create paper frame", 200));
+                    return Ok(new ResponsiveAPI<string>("Range of frames created successfully", "Create paper frames", 200));
                 }
 
                 return BadRequest(new ResponsiveAPI<string>("Invalid model state", "Create paper frames", 400));
@@ -65,7 +78,7 @@ namespace BackEndDevelopment.Controllers.PaperController
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper frame", 500));
+                    new ResponsiveAPI<string>($"Internal server error: {ex.Message}", "Create paper frames", 500));
             }
         }
         [HttpPost("{id}")]

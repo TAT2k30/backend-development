@@ -113,7 +113,7 @@ namespace BackEndDevelopment.Controllers.PaperController
             }
         }
         [HttpPut]
-        public async Task<ActionResult<ResponsiveAPI<PaperSize>>> UpdateSize (int id,[FromForm] PaperSize paperSize)
+        public async Task<ActionResult<ResponsiveAPI<PaperSize>>> UpdateSize (int id)
         {
             var sizeUpdate = await _dbContext.PaperSizes.FindAsync(id);
             if (sizeUpdate == null)
@@ -122,9 +122,7 @@ namespace BackEndDevelopment.Controllers.PaperController
             }
             try
             {
-                sizeUpdate.Description = paperSize.Description;
-                sizeUpdate.Name = paperSize.Name;
-                sizeUpdate.Acreage = paperSize.Acreage;
+              sizeUpdate.Status = !sizeUpdate.Status;
                 await _dbContext.SaveChangesAsync();
                 return Ok(new ResponsiveAPI<PaperSize>(sizeUpdate, "Size updated successfully", 200));
             }

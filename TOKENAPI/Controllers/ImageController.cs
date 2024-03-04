@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 using TOKENAPI.Controllers;
 using TOKENAPI.Models;
 using TOKENAPI.Services;
@@ -44,11 +45,21 @@ namespace BackEndDevelopment.Controllers
 
             if (images != null && images.Any())
             {
-                var imageResponseList = images.Select(img => new ImageResponseModel
+                var imageResponseList = new List<ImageResponseModel>();
+
+                foreach (var img in images)
                 {
-                    Id = img.Id,
-                    ImageUrl = img.ImageUrl
-                }).ToList();
+                    var base64String = await GetBase64StringFromImageUrl(img.ImageUrl);
+                    if (base64String.IsNullOrEmpty())
+                    {
+                        return BadRequest(new ResponsiveAPI<string>("Failed", "Cannot convert base64 img", 500));
+                    }
+                    imageResponseList.Add(new ImageResponseModel
+                    {
+                        Id = img.Id,
+                        Base64Image = base64String
+                    });
+                }
 
                 return Ok(new ResponsiveAPI<IEnumerable<ImageResponseModel>>(imageResponseList, $"Images for user with id : {userId} retrieved successfully", 200));
             }
@@ -58,10 +69,33 @@ namespace BackEndDevelopment.Controllers
             }
         }
 
+        private async Task<string> GetBase64StringFromImageUrl(string imageUrl)
+        {
+            try
+            {
+                using var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync(imageUrl);
+                if (response.IsSuccessStatusCode)
+                {
+                    byte[] imageBytes = await response.Content.ReadAsByteArrayAsync();
+                    return Convert.ToBase64String(imageBytes);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
         public class ImageResponseModel
         {
             public int Id { get; set; }
-            public string ImageUrl { get; set; }
+            public string Base64Image { get; set; }
         }
 
         [HttpPost]
@@ -93,7 +127,7 @@ namespace BackEndDevelopment.Controllers
                 }
                 _logger.LogInformation($"Files count: {fileNum}/{files.Count}");
                 var nameNum = 0;
-                foreach(var file in fileNames)
+                foreach (var file in fileNames)
                 {
                     nameNum++;
                 }
@@ -103,11 +137,11 @@ namespace BackEndDevelopment.Controllers
                 foreach (var file in files)
                 {
                     // Lưu file và lấy đường dẫn trả về
-                    var result =  FileHandler.SaveImage("PrintingPhoto", file);
-                    
+                    var result = FileHandler.SaveImage("PrintingPhoto", file);
+
                     imgUrl.Add(result);
                     imgResponse.Add(result.ToString());
-                var newImage = new Image
+                    var newImage = new Image
                     {
                         Title = !String.IsNullOrEmpty(fileNames[number]) ? fileNames[number] : file.FileName,
                         Description = "",
@@ -119,10 +153,10 @@ namespace BackEndDevelopment.Controllers
                     number++;
                 }
 
-              
+
                 await _dbContext.Images.AddRangeAsync(imagesToAdd);
                 await _dbContext.SaveChangesAsync();
-               
+
                 return Ok(new ResponsiveAPI<List<string>>(imgResponse, "Images created successfully", 201));
             }
             catch (Exception ex)
@@ -135,7 +169,7 @@ namespace BackEndDevelopment.Controllers
 
                 _logger.LogError(ex, "Error creating images");
 
-           
+
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponsiveAPI<string>(ex.Message, "Error creating images", 500));
             }
         }
@@ -153,7 +187,7 @@ namespace BackEndDevelopment.Controllers
                 FileHandler.DeleteImage(imgDel.ImageUrl);
                 _dbContext.Images.Remove(imgDel);
                 await _dbContext.SaveChangesAsync();
-                return Ok(new ResponsiveAPI<Image>(imgDel,$"Image with id : {id} deleted successfully.",200));
+                return Ok(new ResponsiveAPI<Image>(imgDel, $"Image with id : {id} deleted successfully.", 200));
             }
             catch (Exception ex)
             {
@@ -161,5 +195,5 @@ namespace BackEndDevelopment.Controllers
             }
         }
     }
-  
+
 }

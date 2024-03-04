@@ -113,8 +113,9 @@ namespace BackEndDevelopment.Controllers.PaperController
             }
         }
         [HttpPut]
-        public async Task<ActionResult<ResponsiveAPI<PaperSize>>> UpdateSize (int id)
+        public async Task<ActionResult<ResponsiveAPI<PaperSize>>> UpdateSize ([FromForm] int id)
         {
+            _logger.LogInformation("Id", id);
             var sizeUpdate = await _dbContext.PaperSizes.FindAsync(id);
             if (sizeUpdate == null)
             {

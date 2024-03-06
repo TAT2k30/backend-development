@@ -116,10 +116,13 @@ namespace BackEndDevelopment.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OrderId")
+                    b.Property<int?>("PaperTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductCategoryId")
                         .HasColumnType("int");
 
                     b.Property<int?>("TechnicalFrameId")
@@ -128,23 +131,23 @@ namespace BackEndDevelopment.Migrations
                     b.Property<int?>("TechnicalSizeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TechnicalTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("TechnicalTypeName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("UnitPrice")
                         .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("PaperTypeId");
+
+                    b.HasIndex("ProductCategoryId");
 
                     b.HasIndex("TechnicalFrameId");
 
                     b.HasIndex("TechnicalSizeId");
-
-                    b.HasIndex("TechnicalTypeId");
 
                     b.ToTable("OrderItems");
                 });
@@ -376,13 +379,17 @@ namespace BackEndDevelopment.Migrations
 
             modelBuilder.Entity("BackEndDevelopment.Models.OrderProps.OrderItem", b =>
                 {
-                    b.HasOne("BackEndDevelopment.Models.ProductProps.ProductCategory", "Category")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("BackEndDevelopment.Models.OrderProps.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
+
+                    b.HasOne("BackEndDevelopment.Models.PaperProperties.PaperType", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("PaperTypeId");
+
+                    b.HasOne("BackEndDevelopment.Models.ProductProps.ProductCategory", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductCategoryId");
 
                     b.HasOne("BackEndDevelopment.Models.PaperProperties.PaperFrame", "TechnicalFrame")
                         .WithMany("OrderItems")
@@ -392,19 +399,11 @@ namespace BackEndDevelopment.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("TechnicalSizeId");
 
-                    b.HasOne("BackEndDevelopment.Models.PaperProperties.PaperType", "TechnicalType")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("TechnicalTypeId");
-
-                    b.Navigation("Category");
-
                     b.Navigation("Order");
 
                     b.Navigation("TechnicalFrame");
 
                     b.Navigation("TechnicalSize");
-
-                    b.Navigation("TechnicalType");
                 });
 
             modelBuilder.Entity("BackEndDevelopment.Models.ProductProps.ProductCategory", b =>

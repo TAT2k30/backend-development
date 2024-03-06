@@ -41,20 +41,14 @@ namespace TOKENAPI.Models
                 .HasForeignKey(oi => oi.OrderId)
                 .IsRequired(false);
 
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.Category)
-                .WithMany(c => c.OrderItems)
-                .HasForeignKey(oi => oi.CategoryId);
+          
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.TechnicalSize)
                 .WithMany(ps => ps.OrderItems)
                 .HasForeignKey(oi => oi.TechnicalSizeId);
 
-            modelBuilder.Entity<OrderItem>()
-                .HasOne(oi => oi.TechnicalType)
-                .WithMany(pt => pt.OrderItems)
-                .HasForeignKey(oi => oi.TechnicalTypeId);
+        
 
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.TechnicalFrame)

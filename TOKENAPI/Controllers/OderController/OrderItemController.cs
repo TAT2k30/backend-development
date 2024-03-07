@@ -8,7 +8,6 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 using TOKENAPI.Models;
 using TOKENAPI.Services;
 
-
 namespace BackEndDevelopment.Controllers.OderController
 {
     [Route("api/[controller]")]
@@ -25,67 +24,80 @@ namespace BackEndDevelopment.Controllers.OderController
         }
 
         [HttpPost]
-        public async Task<ActionResult<IEnumerable<ResponsiveAPI<Order>>>> CreateOrder([FromForm] CreateOrderItemDTO orderItem)
+        [HttpPost]
+        public async Task<ActionResult<ResponsiveAPI<IEnumerable<Order>>>> CreateOrder([FromForm] CreateOrderItemDTO orderItem)
         {
             if (orderItem == null)
             {
-                _logger.LogInformation("No data passes");
+                _logger.LogInformation("No data passed");
                 return BadRequest(new ResponsiveAPI<string>("Failed", "no data", 500));
             }
+
             var userData = await _dbContext.Users.FindAsync(orderItem.UserId);
             if (userData == null)
             {
-                return BadRequest(new ResponsiveAPI<string>("No user found match the ID", "Bruh", 404));
+                return BadRequest(new ResponsiveAPI<string>("No user found matching the ID", "Bruh", 404));
             }
 
+            var sizeData = await _dbContext.PaperSizes.FirstOrDefaultAsync(x => x.Id == orderItem.SizeId);
+            var frameData = await _dbContext.PaperFrames.FirstOrDefaultAsync(x => x.Id == orderItem.FrameId);
 
-            _logger.LogInformation(
-                $"Size id : {orderItem.SizeId}\n" +
-                $"Frame id : {orderItem.FrameId}\n" +
-                $"Material id: {orderItem.MaterialName}\n" +
-                $"Total Price : {orderItem.TotalPrice}\n" +
-                $"Total photo : {orderItem.PhotoAmount}");
+            var initialOrder = new Order
+            {
+                OrderDate = DateTime.Now,
+                Status = "Processing",
+                TotalAmount = orderItem.PhotoAmount,    
+                ShippingAddress = "92 Xo Viet Nghe Tinh",
+                UserId = orderItem.UserId,
+                User = userData,
+            };
 
-            var sizeData = await _dbContext.PaperSizes.FindAsync(orderItem.SizeId);
-            var frameData = await _dbContext.PaperFrames.FindAsync(orderItem.FrameId);
+            await _dbContext.Orders.AddAsync(initialOrder);
+            await _dbContext.SaveChangesAsync();
+
+            var orderId = initialOrder.Id;
+
             var submitOrderItem = new OrderItem
             {
-
                 UnitPrice = orderItem.TotalPrice,
                 TechnicalSizeId = sizeData.Id,
                 TechnicalFrameId = orderItem.FrameId,
                 TechnicalTypeName = orderItem.MaterialName,
                 TechnicalSize = sizeData,
                 TechnicalFrame = frameData,
+                OrderId = orderId
             };
+
             await _dbContext.OrderItems.AddAsync(submitOrderItem);
-            //Kiểm tra coi trong Order có giỏ hành của user chưa, nếu
-            //chưa thì add giỏ hàng và cái order mới làm
-            var existingOrderItems = await _dbContext.Orders
-            .Where(oi => oi.UserId == orderItem.UserId).ToListAsync();
-            if (existingOrderItems == null)
-            {
-                var oderSubmit = new Order
-                {
-                    OrderDate = DateTime.Now,
-                    Status = "Processing",
-                    TotalAmount = orderItem.PhotoAmount,
-                    ShippingAddress = "92 Xo Viet Nghe Tinh",
-                    CreatedAt = DateTime.Now,
-                    UserId = orderItem.UserId,
-                    User = userData,
-                    OrderItems = (ICollection<OrderItem>)submitOrderItem
-                };
-                return Ok(new ResponsiveAPI<IEnumerable<Order>>((IEnumerable<Order>)oderSubmit, "Ok em", 200));
-            }
-            /* await _dbContext.OrderItems.AddAsync(submitOrderItem);*/
-            return Ok();
+            await _dbContext.SaveChangesAsync();
 
+            var updateOrder = await _dbContext.Orders
+                .FirstOrDefaultAsync(x => x.Id == orderId);
+
+            updateOrder.OrderItems.Add(submitOrderItem);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(new ResponsiveAPI<Order>(updateOrder, "Tạo order thành công", 200));
         }
-        /* [HttpGet]
-         public async Task<ActionResult<IEnumerable<ResponsiveAPI<OrderItem>>>> GetAllOrderItem()
-         {
 
-         }*/
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ResponsiveAPI<OrderItem>>>> GetAllOrderItem()
+        {
+            var result = await _dbContext.OrderItems.ToListAsync();
+            return Ok(new ResponsiveAPI<IEnumerable<OrderItem>>(result, "Ok babe", 200));
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ResponsiveAPI<OrderItem>>> DeleteOrderItem(int id)
+        {
+            var delResult = await _dbContext.OrderItems.FirstOrDefaultAsync(x => x.Id == id);
+            if (delResult == null)
+            {
+                return BadRequest(new ResponsiveAPI<string>("Not found", $"OrderItem id:{id} not found", 404));
+            }
+            _dbContext.OrderItems.Remove(delResult);
+            await _dbContext.SaveChangesAsync();
+            return Ok(new ResponsiveAPI<OrderItem>(delResult, "Delete ok nha", 200));
+        }
+        
     }
 }

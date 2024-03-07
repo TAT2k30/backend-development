@@ -4,6 +4,7 @@ namespace BackEndDevelopment.Models.DTOS
 {
     public class CreateOrderItemDTO
     {
+        public int ImgId { get; set; }
         public int SizeId { get; set; }
         public string MaterialName { get; set; }
         public int FrameId { get; set; }
